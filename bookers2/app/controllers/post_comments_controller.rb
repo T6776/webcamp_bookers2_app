@@ -7,7 +7,7 @@ class PostCommentsController < ApplicationController
     if comment.save
       redirect_back(fallback_location: root_path)
     else
-      render "books/show"
+      redirect_back(fallback_location: root_path)
     end
   end
 
@@ -18,7 +18,7 @@ class PostCommentsController < ApplicationController
 
 
 
-    private
+  private
 
   def post_comment_params
     params.require(:post_comment).permit(:comment)
