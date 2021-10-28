@@ -1,0 +1,5 @@
+<% if @model == 'user' %>
+  <%= render 'searches/users', users: @records %>
+<% else @model == 'books' %>
+  <%= render 'searches/books', books: @records %>
+<% end %>
