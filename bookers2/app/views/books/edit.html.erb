@@ -3,7 +3,7 @@
   <div class="row">
     <div class= "col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
       <h1>Editing Book</h1>
-      
+
         <% if @book.errors.any? %>
           <div class= "text-danger">
             <h3><%= @book.errors.count %>error prohibited this obj from being saved:</h3>
@@ -14,7 +14,7 @@
             </ul>
           </div>
         <% end %>
-      
+
       <%= form_with model:@book, local:true do |f| %>
         <div class= "form-group">
           <label for="book_title">Title</label><br />
@@ -24,8 +24,18 @@
           <label for="book_opinion">Opinion</label><br />
           <%= f.text_area :body, id:"book_opinion", class: "form-control" %>
         </div>
+        <div id="star-rate-<%= @book.id %>"></div>
+          <script>
+            $("#star-rate-<%= @book.id %>").raty({
+            size: 36,
+            starOn: "/assets/star-on.png",
+            starOff: "/assets/star-off.png",
+            readOnly: true,
+            score: <%= @book.rate %>,
+            });
+          </script>
         <div class= "form-group">
-          <%= f.submit "Update Book",class: "btn btn-success" %>
+          <%= f.submit "Update Book",class: "btn btn-success mt-3" %>
         </div>
       <% end %>
       <%= link_to "Show", book_path  %>

@@ -20,6 +20,9 @@
               </td>
               <td><%= link_to @book.title, book_path(@book) %></td>
               <td><%= @book.body %></td>
+              <td>
+                <div id="star-rate-<%= @book.id %>"></div>
+              </td>
               <td id="favorite-btn_<%= @book.id %>">
                 <%= render 'favorites/favorite-btn',book: @book %>
               </td>
@@ -37,3 +40,13 @@
     </div>
   </div>
 </div>
+
+<script>
+  $("#star-rate-<%= @book.id %>").raty({
+    size: 36,
+    starOn: "/assets/star-on.png",
+    starOff: "/assets/star-off.png",
+    readOnly: true,
+    score: <%= @book.rate %>,
+  });
+</script>
