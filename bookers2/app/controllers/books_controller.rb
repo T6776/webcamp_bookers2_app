@@ -13,9 +13,15 @@ class BooksController < ApplicationController
   end
 
   def index
-    @books = Book.all
     @book = Book.new
     @user = current_user
+    if params[:sort] == "rate"
+      @books = Book.order(rate: "DESC")
+    elsif params[:sort] == "updated_at"
+      @books = Book.order(updated_at: "DESC")
+    else
+      @books = Book.all
+    end
   end
 
   def show
@@ -51,6 +57,10 @@ class BooksController < ApplicationController
 
   def book_params
     params.require(:book).permit(:title, :body, :user_id, :rate)
+  end
+
+  def sort_params
+    params.permit(:sort)
   end
 
 
