@@ -3,7 +3,9 @@ class BooksController < ApplicationController
   def create
     @book = Book.new(book_params)
     @book.user_id = current_user.id
+    category_list = params[:book][:category_name].delete(' ').delete('　').split(',')
     if @book.save
+      @book.save_category(category_list)
       redirect_to book_path(@book), notice: 'You have created book successfully.'
     else
       @books = Book.all
@@ -13,6 +15,7 @@ class BooksController < ApplicationController
   end
 
   def index
+    @category_list = Category.all
     @book = Book.new
     @user = current_user
     if params[:sort] == "rate"
