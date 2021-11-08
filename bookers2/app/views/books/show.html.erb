@@ -21,6 +21,11 @@
               <td><%= link_to @book.title, book_path(@book) %></td>
               <td><%= @book.body %></td>
               <td>
+                <% @book_categories.each do |category| %>
+                  <%= category.category_name %>
+                <% end %>
+              </td>
+              <td>
                 <div id="star-rate-<%= @book.id %>"></div>
               </td>
               <td id="favorite-btn_<%= @book.id %>">

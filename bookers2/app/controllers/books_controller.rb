@@ -15,7 +15,6 @@ class BooksController < ApplicationController
   end
 
   def index
-    @category_list = Category.all
     @book = Book.new
     @user = current_user
     if params[:sort] == "rate"
@@ -29,6 +28,7 @@ class BooksController < ApplicationController
 
   def show
     @book = Book.find(params[:id])
+    @book_categories = @book.categories
     @user = @book.user
     @post_comment = PostComment.new
   end

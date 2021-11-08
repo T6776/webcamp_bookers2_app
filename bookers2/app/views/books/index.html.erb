@@ -41,7 +41,11 @@
               </td>
               <td><%= link_to book.title, book_path(book) %></td>
               <td><%= book.body %></td>
-              <td><%= book.categories.category_name %></td>
+              <td>
+                <% book.categories.each do |category| %>
+                  <%= category.category_name %>
+                <% end %>
+              </td>
               <td>
                 <div id="star-rate-<%= book.id %>"></div>
                 <script>
