@@ -1,5 +1,7 @@
 <% if @model == 'user' %>
   <%= render 'searches/users', users: @records %>
-<% else @model == 'books' %>
+<% elsif @model == 'book' %>
   <%= render 'searches/books', books: @records %>
+<% elsif @model == 'category' %>
+  <%= render 'searches/categories', categories: @records %>
 <% end %>
